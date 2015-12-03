@@ -9,6 +9,7 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -39,7 +40,8 @@ public class Main extends Application {
         });
 
         VBox vBox = new VBox();
-
+        GridPane gridPane = new GridPane();
+        
         for (Element element : parser.getCategoryList()
                 ) {
             vBox.getChildren().add(new Button(element.text()));
