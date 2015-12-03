@@ -9,10 +9,10 @@ import java.io.IOException;
 
 
 public class Parser {
-    Document document;
-    Elements categoryList;
+    static Document document;
+    static Elements categoryList;
     String title = null;
-    String URL = "http://ekb.zarplata.ru/";
+    static String URL = "http://ekb.zarplata.ru/";
 
     public Parser() throws IOException {
 
@@ -43,4 +43,21 @@ public class Parser {
 
 //        System.out.println("Jsoup Can read HTML page from URL, title : " + title);
 
-}}
+}
+
+    public static Elements getCategoryList() {
+        return categoryList;
+    }
+
+    public void setCategoryList(Elements categoryList) {
+        this.categoryList = categoryList;
+    }
+
+    public static Document getDocument() {
+        return document;
+    }
+
+    public void setDocument(Document document) {
+        this.document = document;
+    }
+}

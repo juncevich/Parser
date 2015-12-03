@@ -1,8 +1,13 @@
 package GUI;
 
 
+import logic.Parser;
+import org.jsoup.nodes.Element;
+
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class MainFrame extends JFrame{
     /**
@@ -18,11 +23,23 @@ public class MainFrame extends JFrame{
      * @see Component#setVisible
      * @see JComponent#getDefaultLocale
      */
-    public MainFrame() throws HeadlessException {
+    public MainFrame() throws HeadlessException, IOException {
         setBounds(100, 100, 600, 400);
+        Parser parser = new Parser();
+        JPanel panelButtons = new JPanel();
+        panelButtons.setLayout(new FlowLayout());
+        for (Element element : parser.getCategoryList()
+             ) {
+            panelButtons.add(new JButton(element.text()));
+
+        }
+
+
+        this.add(new JScrollPane(panelButtons), BorderLayout.EAST);
+
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         MainFrame mainFrame = new MainFrame();
         mainFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         mainFrame.setVisible(true);
