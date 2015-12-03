@@ -9,41 +9,38 @@ import java.io.IOException;
 
 
 public class Parser {
+    Document document;
+    Elements categoryList;
+    String title = null;
+    String URL = "http://ekb.zarplata.ru/";
+
+    public Parser() throws IOException {
 
 
-
-    public static void main(String[] args) throws IOException {
-        Document document;
-        String URL = "http://ekb.zarplata.ru/";
-        String title = null;
-
-        try {
-            document = Jsoup.connect(URL).get();
-            title = document.title();
+    document = Jsoup.connect(URL).get();
+    title = document.title();
 //            Elements mainHeaderElements = document.select("nav.ra-rubricator-entity-categories");
 //            for (Element element: mainHeaderElements
 //                 ) {
 //                System.out.println(element);
 //            }
 
-            //Elements mainHeaderElements1 = document.select("li.ra-rubricator-entity-item");
-            Elements mainHeaderElements1 = document.select("a[data-analytic=\"clickRubricatorResume\"]");
+        //Elements mainHeaderElements1 = document.select("li.ra-rubricator-entity-item");
+    categoryList = document.select("a[data-analytic=\"clickRubricatorResume\"]");
 
 
-            for (Element element: mainHeaderElements1
-                    ) {
-                System.out.println(element);
-                //System.out.println(element.text());
-            }
-            //Elements title1 = doc.select("<document>");
-            //Elements title1 = document.select("body");
-            //System.out.println(title1.get(1));
-            //System.out.println(title1.toString());
-            System.out.println(title);
-        } catch (IOException e) {
-            e.printStackTrace();
+        for (Element element : categoryList
+                ) {
+            System.out.println(element);
+            //System.out.println(element.text());
         }
+        //Elements title1 = doc.select("<document>");
+        //Elements title1 = document.select("body");
+        //System.out.println(title1.get(1));
+        //System.out.println(title1.toString());
+        System.out.println(title);
+
 
 //        System.out.println("Jsoup Can read HTML page from URL, title : " + title);
 
-    }}
+}}
