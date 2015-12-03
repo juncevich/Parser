@@ -24,10 +24,11 @@ public class MainFrame extends JFrame{
      * @see JComponent#getDefaultLocale
      */
     public MainFrame() throws HeadlessException, IOException {
-        setBounds(100, 100, 600, 400);
+        setBounds(100, 100, 600, 800);
         Parser parser = new Parser();
         JPanel panelButtons = new JPanel();
-        panelButtons.setLayout(new FlowLayout());
+        panelButtons.setLayout(new GridLayout(parser.getCategoryList().size(),1));
+        panelButtons.setPreferredSize(new Dimension(600,750));
         for (Element element : parser.getCategoryList()
              ) {
             panelButtons.add(new JButton(element.text()));
@@ -35,7 +36,7 @@ public class MainFrame extends JFrame{
         }
 
 
-        this.add(new JScrollPane(panelButtons), BorderLayout.EAST);
+        this.add(new JScrollPane(panelButtons), BorderLayout.WEST);
 
     }
 
