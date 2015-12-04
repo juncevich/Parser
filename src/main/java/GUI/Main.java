@@ -46,17 +46,22 @@ public class Main extends Application {
         
         //for (Element element : parser.getCategoryList()
         for (int i = 0; i < parser.getCategoryList().size(); i++) {
-
             Button button1 = new Button(parser.getCategoryList().get(i).text());
             button1.setPrefSize(250,40);
-            vBox.getChildren().add(button1);
+            if (i<10){
+                gridPane.add(button1, 0, i);
+            } else {
+                gridPane.add(button1, 1, i);
+            }
+
+            //vBox.getChildren().add(button1);
             //vBox.getChildren().add(new Button(element.text()));
 
 
         }
 
 
-        primaryStage.setScene(new Scene(vBox,300,300));
+        primaryStage.setScene(new Scene(gridPane,600,600));
         primaryStage.show();
     }
 
