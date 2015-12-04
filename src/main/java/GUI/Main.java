@@ -9,6 +9,7 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -17,6 +18,7 @@ import javafx.stage.Stage;
 import logic.Parser;
 import org.jsoup.nodes.Element;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.Random;
 
@@ -42,9 +44,13 @@ public class Main extends Application {
         VBox vBox = new VBox();
         GridPane gridPane = new GridPane();
         
-        for (Element element : parser.getCategoryList()
-                ) {
-            vBox.getChildren().add(new Button(element.text()));
+        //for (Element element : parser.getCategoryList()
+        for (int i = 0; i < parser.getCategoryList().size(); i++) {
+
+            Button button1 = new Button(parser.getCategoryList().get(i).text());
+            button1.setPrefSize(250,40);
+            vBox.getChildren().add(button1);
+            //vBox.getChildren().add(new Button(element.text()));
 
 
         }

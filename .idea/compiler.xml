@@ -20,14 +20,14 @@
       </profile>
       <profile default="false" name="Annotation profile for Parser" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="Parser" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
-      <module name="Parser" target="1.8" />
+      <module name="Parser" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>
