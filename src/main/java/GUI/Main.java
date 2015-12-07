@@ -14,6 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import logic.Parser;
 import org.jsoup.nodes.Element;
@@ -47,17 +48,19 @@ public class Main extends Application {
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setHgap(10);
         gridPane.setVgap(10);
-        gridPane.setGridLinesVisible(true);
+        gridPane.setGridLinesVisible(false);
         //for (Element element : parser.getCategoryList()
         for (int i = 0; i < parser.getCategoryList().size(); i++) {
             Button button1 = new Button(parser.getCategoryList().get(i).text());
-            button1.setPrefSize(250,40);
+
+            button1.setPrefSize(250,20);
+            button1.setTextAlignment(TextAlignment.JUSTIFY);
             if (i<10){
                 gridPane.add(button1, 0, i);
             } else if (i<20){
-                gridPane.add(button1, 1, i);
+                gridPane.add(button1, 1, i-10);
             }else if (i<30){
-                gridPane.add(button1, 2, i);
+                gridPane.add(button1, 2, i-20);
             }
 
             //vBox.getChildren().add(button1);
@@ -65,7 +68,7 @@ public class Main extends Application {
 
 
         }
-        Scene scene = new Scene(gridPane,600,600);
+        Scene scene = new Scene(gridPane,800,600);
 
         primaryStage.setScene(scene);
         primaryStage.show();
