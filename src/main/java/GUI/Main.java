@@ -42,16 +42,22 @@ public class Main extends Application {
         });
 
         VBox vBox = new VBox();
+        VBox vBox1 = new VBox();
         GridPane gridPane = new GridPane();
-        
+        gridPane.setAlignment(Pos.CENTER);
+        gridPane.setHgap(10);
+        gridPane.setVgap(10);
+        gridPane.setGridLinesVisible(true);
         //for (Element element : parser.getCategoryList()
         for (int i = 0; i < parser.getCategoryList().size(); i++) {
             Button button1 = new Button(parser.getCategoryList().get(i).text());
             button1.setPrefSize(250,40);
             if (i<10){
                 gridPane.add(button1, 0, i);
-            } else {
+            } else if (i<20){
                 gridPane.add(button1, 1, i);
+            }else if (i<30){
+                gridPane.add(button1, 2, i);
             }
 
             //vBox.getChildren().add(button1);
@@ -59,9 +65,9 @@ public class Main extends Application {
 
 
         }
+        Scene scene = new Scene(gridPane,600,600);
 
-
-        primaryStage.setScene(new Scene(gridPane,600,600));
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
