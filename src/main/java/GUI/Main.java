@@ -4,7 +4,8 @@ import com.sun.javafx.geom.Vec2f;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
+import javafx.geometry.*;
+import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -33,7 +34,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         parser = new Parser();
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Resume parser");
         Button button = new Button("click me");
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -42,33 +43,37 @@ public class Main extends Application {
             }
         });
 
-        VBox vBox = new VBox();
-        VBox vBox1 = new VBox();
+
         GridPane gridPane = new GridPane();
         gridPane.setAlignment(Pos.CENTER);
         gridPane.setHgap(10);
         gridPane.setVgap(10);
+        gridPane.setPadding(new Insets(5,25,5,25));
         gridPane.setGridLinesVisible(false);
-        //for (Element element : parser.getCategoryList()
         for (int i = 0; i < parser.getCategoryList().size(); i++) {
-            Button button1 = new Button(parser.getCategoryList().get(i).text());
+            final Button button1 = new Button(parser.getCategoryList().get(i).text());
 
             button1.setPrefSize(250,20);
             button1.setTextAlignment(TextAlignment.JUSTIFY);
+            button1.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    System.out.println(button1.getText());
+                }
+            });
             if (i<10){
                 gridPane.add(button1, 0, i);
             } else if (i<20){
                 gridPane.add(button1, 1, i-10);
             }else if (i<30){
                 gridPane.add(button1, 2, i-20);
-            }
-
-            //vBox.getChildren().add(button1);
-            //vBox.getChildren().add(new Button(element.text()));
+            } else if (i<40){
+            gridPane.add(button1, 3, i-30);
+        }
 
 
         }
-        Scene scene = new Scene(gridPane,800,600);
+        Scene scene = new Scene(gridPane,1000,370);
 
         primaryStage.setScene(scene);
         primaryStage.show();
