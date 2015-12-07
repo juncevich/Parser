@@ -32,16 +32,9 @@ public class Main extends Application {
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(final Stage primaryStage) throws Exception{
         parser = new Parser();
         primaryStage.setTitle("Resume parser");
-        Button button = new Button("click me");
-        button.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                System.out.println("Hello World!");
-            }
-        });
 
 
         GridPane gridPane = new GridPane();
@@ -59,6 +52,8 @@ public class Main extends Application {
                 @Override
                 public void handle(ActionEvent actionEvent) {
                     System.out.println(button1.getText());
+                    primaryStage.setScene(new Scene(new GridPane(), 1000, 370));
+                    primaryStage.setTitle(button1.getText());
                 }
             });
             if (i<10){
