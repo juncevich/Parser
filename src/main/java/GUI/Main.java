@@ -54,6 +54,7 @@ public class Main extends Application {
                     System.out.println(button1.getText());
                     primaryStage.setScene(new Scene(new GridPane(), 1000, 370));
                     primaryStage.setTitle(button1.getText());
+
                 }
             });
             if (i<10){

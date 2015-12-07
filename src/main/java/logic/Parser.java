@@ -11,6 +11,7 @@ import java.io.IOException;
 public class Parser {
     static Document document;
     static Elements categoryList;
+    static Elements resumeList;
     String title = null;
     static String URL = "http://ekb.zarplata.ru/";
 
@@ -44,7 +45,15 @@ public class Parser {
 //        System.out.println("Jsoup Can read HTML page from URL, title : " + title);
 
 }
+    public Elements getResumeList(String categoryName){
+        try {
+            document = Jsoup.connect(URL + categoryName).get();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+        return resumeList;
+    }
     public static Elements getCategoryList() {
         return categoryList;
     }
