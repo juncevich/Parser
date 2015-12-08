@@ -33,6 +33,7 @@ public class Parser {
         for (Element element : categoryList
                 ) {
             System.out.println(element);
+            System.out.println(element.attr("href"));
             //System.out.println(element.text());
         }
         //Elements title1 = doc.select("<document>");
