@@ -1,11 +1,15 @@
 package logic;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class Parser {
@@ -35,23 +39,64 @@ public class Parser {
         categoryList = document.select("a[data-analytic=\"clickRubricatorResume\"]");
 
 
-        for (Element element : categoryList
-                ) {
-            System.out.println(element);
-            System.out.println(element.attr("abs:href"));
-            //System.out.println(element.text());
-        }
+//        for (Element element : categoryList
+//                ) {
+//            System.out.println(element);
+//            System.out.println(element.attr("abs:href"));
+//            //System.out.println(element.text());
+//        }
 
         System.out.println(title);
     }
-    public void getResumeList(){
+    public void getResumeList() throws JSONException{
         try {
              document = Jsoup.connect("http://ekb.zarplata.ru/api/v1/resumes/?state%5B%5D=1&visibility_type=1&average_salary=true&categories_facets=1&city_id%5B%5D=994&rubric%5B%5D=1&limit=25&offset=0&fields=add_date%2Cmod_date%2Cage_pretty%2Cattachment%2Cbirthday%2Ccontact%2Ceducation%2Ceducation_specialty%2Cexperience%2Cexperience_length%2Cexperience_prune%2Cheader%2Cid%2Cinfo%2Cis_upped%2Cis_journey%2Cjobs%2Cowner_id%2Cphoto%2Csalary%2Cstate%2Curl%2Cvalidate_state%2Cviews%2Chide_birthday%2Csex")
                     .header("Accept", "text/*").ignoreContentType(true)
                     .userAgent("Mozilla/5.0 (Windows NT 6.1; rv:40.0) Gecko/20100101 Firefox/40.0")
                     .get()
                     ;
-            System.out.println(document);
+            String resumeListJson = document.select("body").text();
+            //System.out.println(resumeListJson);
+            JSONObject jsonObject = new JSONObject(resumeListJson);
+            JSONArray jsonArray = jsonObject.getJSONArray("resumes");
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                String resume_id = jsonArray.getJSONObject(i).optString("id").toString();
+                String resume_owner_id = jsonArray.getJSONObject(i).optString("owner_id").toString();
+                String resume_wanted_salary = jsonArray.getJSONObject(i).optString("wanted_salary").toString();
+                String resume_wanted_salary_rub = jsonArray.getJSONObject(i).optString("wanted_salary_rub").toString();
+                String resume_age = jsonArray.getJSONObject(i).optString("age").toString();
+                String resume_header = jsonArray.getJSONObject(i).optString("header").toString();
+                String resume_personal_qualities = jsonArray.getJSONObject(i).optString("personal_qualities").toString();
+                String resume_institution = jsonArray.getJSONObject(i).optString("institution").toString();
+                String resume_education_specialty = jsonArray.getJSONObject(i).optString("education_specialty").toString();
+                String resume_education_description = jsonArray.getJSONObject(i).optString("education_description").toString();
+                String resume_experience = jsonArray.getJSONObject(i).optString("experience").toString();
+                String resume_url = jsonArray.getJSONObject(i).optString("url").toString();
+                String resume_skills = jsonArray.getJSONObject(i).optString("skills").toString();
+
+                String resume_working_type = jsonArray.getJSONObject(i).optString("working_type").toString();
+
+
+
+                System.out.println(resume_id);
+                System.out.println(resume_owner_id);
+                System.out.println(resume_wanted_salary);
+                System.out.println(resume_wanted_salary_rub);
+                System.out.println(resume_age);
+                System.out.println(resume_header);
+                System.out.println(resume_personal_qualities);
+                System.out.println(resume_institution);
+                System.out.println(resume_education_specialty);
+                System.out.println(resume_education_description);
+                System.out.println(resume_experience);
+                System.out.println(resume_url);
+                System.out.println(resume_skills);
+
+                System.out.println(resume_working_type);
+                System.out.println("------------------------------------------------------------------------");
+
+            }
             //document = Jsoup.connect("http://ekb.zarplata.ru/resume?state%5B%5D=1&visibility_type=1&average_salary=1&categories_facets=1&city_id%5B%5D=994&rubric%5B%5D=1&limit=25").get();
             //document = Jsoup.connect(categoryList.get(0).attr("abs:href")).timeout(0).get();
             //System.out.println(document.toString());
@@ -64,7 +109,8 @@ public class Parser {
            //resumeList = document.select("div").attr("data-type", "resumes").select("li");
            //resumeList = document.select("div").attr("class","ra-elements-list__item").attr("data-id", "39140625").attr("data-analytic", "");
 
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
 //        for (Element element : resumeList
