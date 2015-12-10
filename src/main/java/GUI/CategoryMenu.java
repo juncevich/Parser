@@ -5,7 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 
-public class CategoryMenu extends Scene {
+class CategoryMenu extends Scene {
     public CategoryMenu(@NamedArg("root") Parent root) {
         super(root);
     }

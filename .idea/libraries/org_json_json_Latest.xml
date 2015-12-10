@@ -1,6 +1,6 @@
 <component name="libraryTable">
-  <library name="org.json:json:20151123" type="repository">
-    <properties maven-id="org.json:json:20151123" />
+  <library name="org.json:json:Latest" type="repository">
+    <properties maven-id="org.json:json:LATEST" />
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/json-20151123.jar!/" />
     </CLASSES>

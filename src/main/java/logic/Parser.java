@@ -5,19 +5,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 
 public class Parser {
-    static Document document;
-    static Elements categoryList;
+    private static Document document;
+    private static Elements categoryList;
     static Elements resumeList;
-    String title = null;
-    static String URL = "http://ekb.zarplata.ru/";
+    private static final String URL = "http://ekb.zarplata.ru/";
 
     public Parser() {
     getMenuList();
@@ -28,13 +25,13 @@ public class Parser {
 
 
 }
-    public void getMenuList(){
+    private void getMenuList(){
         try {
             document = Jsoup.connect(URL).get();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        title = document.title();
+        String title = document.title();
 
         categoryList = document.select("a[data-analytic=\"clickRubricatorResume\"]");
 
@@ -48,7 +45,7 @@ public class Parser {
 
         System.out.println(title);
     }
-    public void getResumeList() throws JSONException{
+    private void getResumeList() throws JSONException{
         try {
              document = Jsoup.connect("http://ekb.zarplata.ru/api/v1/resumes/?state%5B%5D=1&visibility_type=1&average_salary=true&categories_facets=1&city_id%5B%5D=994&rubric%5B%5D=1&limit=25&offset=0&fields=add_date%2Cmod_date%2Cage_pretty%2Cattachment%2Cbirthday%2Ccontact%2Ceducation%2Ceducation_specialty%2Cexperience%2Cexperience_length%2Cexperience_prune%2Cheader%2Cid%2Cinfo%2Cis_upped%2Cis_journey%2Cjobs%2Cowner_id%2Cphoto%2Csalary%2Cstate%2Curl%2Cvalidate_state%2Cviews%2Chide_birthday%2Csex")
                     .header("Accept", "text/*").ignoreContentType(true)
@@ -61,21 +58,21 @@ public class Parser {
             JSONArray jsonArray = jsonObject.getJSONArray("resumes");
 
             for (int i = 0; i < jsonArray.length(); i++) {
-                String resume_id = jsonArray.getJSONObject(i).optString("id").toString();
-                String resume_owner_id = jsonArray.getJSONObject(i).optString("owner_id").toString();
-                String resume_wanted_salary = jsonArray.getJSONObject(i).optString("wanted_salary").toString();
-                String resume_wanted_salary_rub = jsonArray.getJSONObject(i).optString("wanted_salary_rub").toString();
-                String resume_age = jsonArray.getJSONObject(i).optString("age").toString();
-                String resume_header = jsonArray.getJSONObject(i).optString("header").toString();
-                String resume_personal_qualities = jsonArray.getJSONObject(i).optString("personal_qualities").toString();
-                String resume_institution = jsonArray.getJSONObject(i).optString("institution").toString();
-                String resume_education_specialty = jsonArray.getJSONObject(i).optString("education_specialty").toString();
-                String resume_education_description = jsonArray.getJSONObject(i).optString("education_description").toString();
-                String resume_experience = jsonArray.getJSONObject(i).optString("experience").toString();
-                String resume_url = jsonArray.getJSONObject(i).optString("url").toString();
-                String resume_skills = jsonArray.getJSONObject(i).optString("skills").toString();
+                String resume_id = jsonArray.getJSONObject(i).optString("id");
+                String resume_owner_id = jsonArray.getJSONObject(i).optString("owner_id");
+                String resume_wanted_salary = jsonArray.getJSONObject(i).optString("wanted_salary");
+                String resume_wanted_salary_rub = jsonArray.getJSONObject(i).optString("wanted_salary_rub");
+                String resume_age = jsonArray.getJSONObject(i).optString("age");
+                String resume_header = jsonArray.getJSONObject(i).optString("header");
+                String resume_personal_qualities = jsonArray.getJSONObject(i).optString("personal_qualities");
+                String resume_institution = jsonArray.getJSONObject(i).optString("institution");
+                String resume_education_specialty = jsonArray.getJSONObject(i).optString("education_specialty");
+                String resume_education_description = jsonArray.getJSONObject(i).optString("education_description");
+                String resume_experience = jsonArray.getJSONObject(i).optString("experience");
+                String resume_url = jsonArray.getJSONObject(i).optString("url");
+                String resume_skills = jsonArray.getJSONObject(i).optString("skills");
 
-                String resume_working_type = jsonArray.getJSONObject(i).optString("working_type").toString();
+                String resume_working_type = jsonArray.getJSONObject(i).optString("working_type");
 
 
 
@@ -127,7 +124,7 @@ public class Parser {
     }
 
     public void setCategoryList(Elements categoryList) {
-        this.categoryList = categoryList;
+        Parser.categoryList = categoryList;
     }
 
     public static Document getDocument() {
@@ -135,6 +132,6 @@ public class Parser {
     }
 
     public void setDocument(Document document) {
-        this.document = document;
+        Parser.document = document;
     }
 }
