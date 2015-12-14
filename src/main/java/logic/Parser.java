@@ -5,6 +5,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -36,12 +37,12 @@ public class Parser {
         categoryList = document.select("a[data-analytic=\"clickRubricatorResume\"]");
 
 
-//        for (Element element : categoryList
-//                ) {
-//            System.out.println(element);
-//            System.out.println(element.attr("abs:href"));
-//            //System.out.println(element.text());
-//        }
+        for (Element element : categoryList
+                ) {
+            System.out.println(element);
+            System.out.println(element.attr("abs:href"));
+            //System.out.println(element.text());
+        }
 
         System.out.println(title);
     }
