@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MySqlCategoryDao implements CategoryDao {
@@ -67,6 +68,21 @@ public class MySqlCategoryDao implements CategoryDao {
      */
     @Override
     public List<Category> getAll() throws SQLException {
-        return null;
+        String sql = "SELECT * FROM resume_schema.Category;";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        List<Category> categoryList = new ArrayList<Category>();
+        while (resultSet.next()){
+            Category category = new Category();
+            category.setId(resultSet.getInt("id"));
+            category.setRubricNumber(resultSet.getInt("rubric_number"));
+            category.setRubricName(resultSet.getString("rubric_name"));
+            categoryList.add(category);
+        }
+        return categoryList;
+    }
+
+    public MySqlCategoryDao(Connection connection) {
+        this.connection = connection;
     }
 }
