@@ -12,7 +12,8 @@ import javafx.stage.Stage;
 import logic.Parser;
 
 
-class Main extends Application {
+public class Main extends Application {
+
 
 
     @Override
