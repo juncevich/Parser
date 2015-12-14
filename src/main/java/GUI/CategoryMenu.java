@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import javafx.beans.NamedArg;
 import javafx.scene.Parent;
