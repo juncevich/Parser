@@ -1,6 +1,10 @@
 package entity;
 
 
-public class Resume {
+import javafx.scene.layout.Pane;
+
+public class Resume extends Pane{
+
+
 
 }
