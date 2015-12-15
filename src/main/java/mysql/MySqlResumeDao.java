@@ -3,11 +3,13 @@ package mysql;
 import dao.ResumeDao;
 import entity.Resume;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
 
 public class MySqlResumeDao implements ResumeDao{
+    private final Connection connection;
     /**
      * Создает новую запись и соответствующий объект.
      *
@@ -52,5 +54,9 @@ public class MySqlResumeDao implements ResumeDao{
     @Override
     public List<Resume> getAll() throws SQLException {
         return null;
+    }
+
+    public MySqlResumeDao(Connection connection) {
+        this.connection = connection;
     }
 }

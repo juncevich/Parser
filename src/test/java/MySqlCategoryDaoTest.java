@@ -1,17 +1,22 @@
 import dao.DaoFactory;
+import entity.Category;
+import mysql.MySqlDaoFactory;
+import org.junit.Assert;
+import org.junit.Test;
+import dao.CategoryDao;
 
 import java.sql.Connection;
+import java.util.List;
 
-/**
- * Created by Juncevich on 14.12.2015.
- */
+
 public class MySqlCategoryDaoTest {
+
     @Test
     public void testGetAll() throws Exception {
         DaoFactory daoFactory = new MySqlDaoFactory();
-        List<Group> list;
+        List<Category> list;
         try (Connection con = daoFactory.getConnection()) {
-            GroupDao dao = daoFactory.getGroupDao(con);
+            CategoryDao dao = daoFactory.getCategoryDao(con);
             list = dao.getAll();
         }
         Assert.assertNotNull(list);
