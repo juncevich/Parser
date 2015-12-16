@@ -53,6 +53,7 @@ public class Parser {
         for (int i=0; i < getDocument(getResumeJsonByCategory(category)).length(); i++){
             Resume resume= new Resume();
             resume.setId(getDocument(getResumeJsonByCategory(category)).getJSONObject(i).optString("id"));
+            resume.setOwner_id(getDocument(getResumeJsonByCategory(category)).getJSONObject(i).optString("owner_id"));
 
             resumeList.add(resume);
         }
