@@ -3,6 +3,7 @@ package parse;
 
 import dao.CategoryDao;
 import entity.Category;
+
 import utils.Parser;
 
 import java.sql.SQLException;
@@ -30,15 +31,28 @@ public class ParseCategoryDao implements CategoryDao {
 
     }
 
-    @Override
-    public List<Category> getAll() throws SQLException {
+
+    public static List<Category> getAll() {
         List<Category> categories = new ArrayList<Category>();
         for (int i=0;i < Parser.getCategoryList().size(); i++){
             Category category = new Category();
             category.setRubricName(Parser.getCategoryList().get(i).text());
-            category.setRubricNumber(Parser.getCategoryList().get(i).elementSiblingIndex());
+            category.setRubricNumber(Integer.parseInt(new StringBuffer(Parser.getCategoryList().get(i).attr("href")).toString().replaceAll("[\\D]", "")));
             categories.add(category);
         }
         return categories;
+    }
+
+    public Category getCategoryById(int id){
+        for (Category category: ParseCategoryDao.getAll()
+             ) {
+                if (category.getRubricNumber() == id){
+                    return category;
+
+                }
+            break;
+        }
+
+        return null;
     }
 }

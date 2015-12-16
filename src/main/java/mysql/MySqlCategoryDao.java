@@ -39,7 +39,7 @@ public class MySqlCategoryDao implements CategoryDao {
         resultSet.next();
         Category category = new Category();
         category.setId(resultSet.getInt("id"));
-        category.setRubricNumber(resultSet.getInt("rubric_number"));
+        //category.setRubricNumber(resultSet.getInt("rubric_number"));
         category.setRubricName(resultSet.getString("rubric_name"));
         return category;
     }
@@ -66,7 +66,7 @@ public class MySqlCategoryDao implements CategoryDao {
      * @return
      * @throws SQLException
      */
-    @Override
+    //@Override
     public List<Category> getAll() throws SQLException {
         String sql = "SELECT * FROM resume_schema.Category;";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -75,7 +75,7 @@ public class MySqlCategoryDao implements CategoryDao {
         while (resultSet.next()){
             Category category = new Category();
             category.setId(resultSet.getInt("id"));
-            category.setRubricNumber(resultSet.getInt("rubric_number"));
+            //category.setRubricNumber(resultSet.getInt("rubric_number"));
             category.setRubricName(resultSet.getString("rubric_name"));
             categoryList.add(category);
         }

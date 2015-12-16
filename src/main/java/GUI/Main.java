@@ -1,14 +1,20 @@
 package gui;
 
+import dao.CategoryDao;
+import entity.Category;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import parse.ParseCategoryDao;
 import utils.Parser;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Main extends Application {
@@ -43,8 +49,9 @@ public class Main extends Application {
 
     public void showCategoryView(){
         CategoryMenu categoryMenu = new CategoryMenu();
-
-//            button1.setOnAction(new EventHandler<ActionEvent>() {
+        ParseCategoryDao parseCategoryDao= new ParseCategoryDao();
+        List<Category> categoryList = parseCategoryDao.getAll();
+        //            button1.setOnAction(new EventHandler<ActionEvent>() {
 //                @Override
 //                public void handle(ActionEvent actionEvent) {
 //                    System.out.println(button1.getText());

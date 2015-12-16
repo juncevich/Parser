@@ -1,9 +1,6 @@
 package entity;
 
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.StringProperty;
-
 public class Category {
     private int id;
     private int rubricNumber;

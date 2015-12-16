@@ -12,10 +12,10 @@ import java.io.IOException;
 
 
 public class Parser {
-    private static Document document;
+    private Document document;
     private static Elements categoryList;
     static Elements resumeList;
-    private static final String URL = "http://ekb.zarplata.ru/";
+    private final String URL = "http://ekb.zarplata.ru/";
 
     public Parser() {
         getMenuList();
@@ -106,15 +106,11 @@ public class Parser {
         return categoryList;
     }
 
-    public void setCategoryList(Elements categoryList) {
-        Parser.categoryList = categoryList;
-    }
 
-    public static Document getDocument() {
+
+    public Document getDocument() {
         return document;
     }
 
-    public void setDocument(Document document) {
-        Parser.document = document;
-    }
+
 }
