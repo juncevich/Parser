@@ -1,5 +1,6 @@
 package utils;
 
+import entity.Resume;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,6 +10,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 
 public class Parser {
@@ -44,8 +48,16 @@ public class Parser {
 
     }
 
-    public static void getResumeList(int category){
-        getDocument(getResumeJsonByCategory(category));
+    public static List<Resume> getResumeList(int category){
+        List<Resume> resumeList = new ArrayList<>();
+        for (int i=0; i < getDocument(getResumeJsonByCategory(category)).length(); i++){
+            Resume resume= new Resume();
+            resume.setId(getDocument(getResumeJsonByCategory(category)).getJSONObject(i).optString("id"));
+
+            resumeList.add(resume);
+        }
+
+        return resumeList;
     }
 
 
