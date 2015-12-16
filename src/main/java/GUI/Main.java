@@ -3,61 +3,73 @@ package gui;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.*;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import logic.Parser;
 
+import java.io.IOException;
+
 
 public class Main extends Application {
-
-
-
+    private Stage primaryStage;
+    private BorderPane rootLayout;
+    private AnchorPane CategoryLayout;
+    ResumeList resumeList;
+    Parser parser = new Parser();
+    
     @Override
-    public void start(final Stage primaryStage) throws Exception{
-        Parser parser = new Parser();
-        primaryStage.setTitle("Resume parser");
+    public void start(final Stage primaryStage) throws Exception {
+        this.primaryStage = primaryStage;
+        this.primaryStage.setTitle("Resume parser.");
+        initRootLayout();
+        showCategoryView();
+
+    }
 
 
-        GridPane gridPane = new GridPane();
-        gridPane.setAlignment(Pos.CENTER);
-        gridPane.setHgap(10);
-        gridPane.setVgap(10);
-        gridPane.setPadding(new Insets(5,25,5,25));
-        gridPane.setGridLinesVisible(false);
-        for (int i = 0; i < Parser.getCategoryList().size(); i++) {
-            final Button button1 = new Button(Parser.getCategoryList().get(i).text());
+    public void initRootLayout() {
+        try {
 
-            button1.setPrefSize(250,20);
-            button1.setTextAlignment(TextAlignment.JUSTIFY);
-            button1.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
-                    System.out.println(button1.getText());
-                    primaryStage.setScene(new Scene(new GridPane(), 1000, 370));
-                    primaryStage.setTitle(button1.getText());
-
-                }
-            });
-            if (i<10){
-                gridPane.add(button1, 0, i);
-            } else if (i<20){
-                gridPane.add(button1, 1, i-10);
-            }else if (i<30){
-                gridPane.add(button1, 2, i-20);
-            } else if (i<40){
-            gridPane.add(button1, 3, i-30);
+            rootLayout = FXMLLoader.load(ClassLoader.getSystemResource("RootLayout.fxml"));
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
+    }
 
-        }
-        Scene scene = new Scene(gridPane,1000,370);
+    public void showCategoryView(){
+        CategoryMenu categoryMenu = new CategoryMenu();
 
-        primaryStage.setScene(scene);
-        primaryStage.show();
+//            button1.setOnAction(new EventHandler<ActionEvent>() {
+//                @Override
+//                public void handle(ActionEvent actionEvent) {
+//                    System.out.println(button1.getText());
+//                    rootLayout.setCenter(new ResumeList());
+//                    primaryStage.setTitle(button1.getText());
+//
+//                }
+//            });
+
+
+
+
+
+        rootLayout.setCenter(categoryMenu);
+    }
+
+    public Stage getPrimaryStage() {
+        return primaryStage;
     }
 
     public static void main(String[] args) {
