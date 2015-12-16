@@ -38,4 +38,12 @@ public class Category {
     public void setRubricName(String rubricName) {
         this.rubricName = rubricName;
     }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "rubricNumber=" + rubricNumber +
+                ", rubricName='" + rubricName + '\'' +
+                '}';
+    }
 }

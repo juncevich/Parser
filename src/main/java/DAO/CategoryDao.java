@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface CategoryDao {
+
     /**
      * Создает новую запись и соответствующий объект.
      * @return Возвращает созданный объект.
@@ -32,10 +33,7 @@ public interface CategoryDao {
      */
     public void delete(Category category);
 
-    /**
-     *
-     * @return
-     * @throws SQLException
-     */
-    public List<Category> getAll() throws SQLException;
+     static List<Category> getAll(){
+         return null;
+     };
 }
