@@ -10,9 +10,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import parse.ParseCategoryService;
 import parse.ParseResumeService;
+import utils.DataLoader;
 import utils.Parser;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -69,14 +71,15 @@ public class Main extends Application {
         rootLayout.setCenter(categoryMenuView);
     }
 
-    static void loadData(){
-        List<Resume> resumeList = ParseResumeService.getResumeListByCategory(1);
+    static void loadData() throws SQLException {
+        DataLoader dataLoader = new DataLoader();
+        dataLoader.getData();
     }
     public Stage getPrimaryStage() {
         return primaryStage;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
 
         launch(args);
         loadData();
