@@ -1,6 +1,7 @@
 package gui;
 
 import entity.Category;
+import entity.Resume;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -8,6 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import parse.ParseCategoryDao;
+import parse.ParseResumeService;
 import utils.Parser;
 
 import java.io.IOException;
@@ -48,6 +50,9 @@ public class Main extends Application {
         CategoryMenuView categoryMenuView = new CategoryMenuView();
         ParseCategoryDao parseCategoryDao= new ParseCategoryDao();
         List<Category> categoryList = parseCategoryDao.getAll();
+        ParseResumeService parseResumeService = new ParseResumeService();
+        List<Resume> resumeList = parseResumeService.getAll();
+
         //            button1.setOnAction(new EventHandler<ActionEvent>() {
 //                @Override
 //                public void handle(ActionEvent actionEvent) {
