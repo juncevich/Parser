@@ -15,16 +15,14 @@ import utils.Parser;
 import java.io.IOException;
 import java.util.List;
 
-import static gui.Main.loadData;
-
 
 public class Main extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
     private AnchorPane CategoryLayout;
-    ResumeList resumeList;
+    private ResumeList resumeList;
     Parser parser = new Parser();
-    
+
     @Override
     public void start(final Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
@@ -51,7 +49,7 @@ public class Main extends Application {
     public void showCategoryView(){
         CategoryMenuView categoryMenuView = new CategoryMenuView();
         ParseCategoryService parseCategoryService = new ParseCategoryService();
-        List<Category> categoryList = parseCategoryService.getAll();
+        List<Category> categoryList = ParseCategoryService.getAll();
 
 
         //            button1.setOnAction(new EventHandler<ActionEvent>() {
@@ -79,8 +77,8 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        loadData();
-        launch(args);
 
+        launch(args);
+        loadData();
     }
 }

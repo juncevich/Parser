@@ -1,28 +1,16 @@
 package utils;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonReader;
 import entity.Resume;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 
 
 public class Parser {
@@ -39,7 +27,7 @@ public class Parser {
 
     }
 
-    private void getMenuList() {
+    private static void getMenuList() {
         try {
             String URL = "http://ekb.zarplata.ru/";
             document = Jsoup.connect(URL).get();
@@ -122,7 +110,7 @@ public class Parser {
     }
 
 
-    public Document getDocument() {
+    public static Document getDocument() {
         return document;
     }
 

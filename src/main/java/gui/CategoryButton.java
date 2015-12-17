@@ -3,7 +3,7 @@ package gui;
 
 import javafx.scene.control.Button;
 
-public class CategoryButton extends Button{
+class CategoryButton extends Button{
     private int button_id;
     private String name;
 

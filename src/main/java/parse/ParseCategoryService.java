@@ -1,23 +1,20 @@
 package parse;
 
 
-import dao.CategoryDao;
 import entity.Category;
-
 import utils.Parser;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ParseCategoryService {
 
     public static List<Category> getAll() {
-        List<Category> categories = new ArrayList<Category>();
+        List<Category> categories = new ArrayList<>();
         for (int i=0;i < Parser.getCategoryList().size(); i++){
             Category category = new Category();
             category.setRubricName(Parser.getCategoryList().get(i).text());
-            category.setRubricNumber(Integer.parseInt(Parser.getCategoryList().get(i).attr("href").toString().replaceAll("[\\D]", "")));
+            category.setRubricNumber(Integer.parseInt(Parser.getCategoryList().get(i).attr("href").replaceAll("[\\D]", "")));
             categories.add(category);
         }
         return categories;

@@ -33,5 +33,5 @@ public interface CategoryDao {
      */
     public void delete(Category category);
 
-     List<Category> getAll();
+     List<Category> getAll() throws SQLException;
 }
