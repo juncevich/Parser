@@ -15,6 +15,8 @@ import utils.Parser;
 import java.io.IOException;
 import java.util.List;
 
+import static gui.Main.loadData;
+
 
 public class Main extends Application {
     private Stage primaryStage;
@@ -68,6 +70,7 @@ public class Main extends Application {
 
         rootLayout.setCenter(categoryMenuView);
     }
+
     static void loadData(){
         List<Resume> resumeList = ParseResumeService.getResumeListByCategory(1);
     }
@@ -76,7 +79,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        loadData();
         launch(args);
+        loadData();
     }
 }
