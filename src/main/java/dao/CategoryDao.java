@@ -33,7 +33,5 @@ public interface CategoryDao {
      */
     public void delete(Category category);
 
-     static List<Category> getAll(){
-         return null;
-     };
+     List<Category> getAll();
 }

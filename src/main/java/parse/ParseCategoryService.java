@@ -17,7 +17,7 @@ public class ParseCategoryService {
         for (int i=0;i < Parser.getCategoryList().size(); i++){
             Category category = new Category();
             category.setRubricName(Parser.getCategoryList().get(i).text());
-            category.setRubricNumber(Integer.parseInt(new StringBuffer(Parser.getCategoryList().get(i).attr("href")).toString().replaceAll("[\\D]", "")));
+            category.setRubricNumber(Integer.parseInt(Parser.getCategoryList().get(i).attr("href").toString().replaceAll("[\\D]", "")));
             categories.add(category);
         }
         return categories;

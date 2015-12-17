@@ -31,7 +31,6 @@ public class Parser {
     static Elements resumeList;
     static JSONObject jsonObject;
     static JSONArray jsonArray;
-    private final String URL = "http://ekb.zarplata.ru/";
 
     public Parser() {
         getMenuList();
@@ -42,28 +41,27 @@ public class Parser {
 
     private void getMenuList() {
         try {
+            String URL = "http://ekb.zarplata.ru/";
             document = Jsoup.connect(URL).get();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String title = document.title();
 
         categoryList = document.select("a[data-analytic=\"clickRubricatorResume\"]");
 
-
-        for (Element element : categoryList
-                ) {
-            System.out.println(element);
-            System.out.println(element.attr("abs:href"));
-
-        }
+//        for (Element element : categoryList
+//                ) {
+//            System.out.println(element);
+//            System.out.println(element.attr("abs:href"));
+//
+//        }
 
     }
 
     public static List<Resume> getResumeList(int category) {
         List<Resume> resumeList = new LinkedList<>();
         JSONArray jsonArray = getDocument(getResumeJsonByCategory(category));
-        for (int i = 0; i < getDocument(getResumeJsonByCategory(category)).length(); i++) {
+        for (int i = 0; i < jsonArray.length(); i++) {
             Resume resume= new Resume();
             resume.setId(jsonArray.getJSONObject(i).optString("id"));
             resume.setOwner_id(jsonArray.getJSONObject(i).optString("owner_id"));
@@ -123,10 +121,6 @@ public class Parser {
         return categoryList;
     }
 
-
-    public static void setResumeList(Elements resumeList) {
-        Parser.resumeList = resumeList;
-    }
 
     public Document getDocument() {
         return document;
