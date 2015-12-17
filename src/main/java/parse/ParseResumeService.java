@@ -12,28 +12,9 @@ import java.util.List;
 
 public class ParseResumeService {
 
-    public Resume create() {
-        return null;
-    }
 
+    public static List<Resume> getResumeListByCategory(int category) {
 
-    public Resume read(int key) {
-        return null;
-    }
-
-
-    public void update(Resume resume) {
-
-    }
-
-
-    public void delete(Resume resume) {
-
-    }
-
-
-    public List<Resume> getAll() {
-
-        return Parser.getResumeList(1);
+        return Parser.getResumeList(category);
     }
 }

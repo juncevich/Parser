@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import parse.ParseCategoryDao;
+import parse.ParseCategoryService;
 import parse.ParseResumeService;
 import utils.Parser;
 
@@ -48,10 +48,9 @@ public class Main extends Application {
 
     public void showCategoryView(){
         CategoryMenuView categoryMenuView = new CategoryMenuView();
-        ParseCategoryDao parseCategoryDao= new ParseCategoryDao();
-        List<Category> categoryList = parseCategoryDao.getAll();
-        ParseResumeService parseResumeService = new ParseResumeService();
-        List<Resume> resumeList = parseResumeService.getAll();
+        ParseCategoryService parseCategoryService = new ParseCategoryService();
+        List<Category> categoryList = parseCategoryService.getAll();
+
 
         //            button1.setOnAction(new EventHandler<ActionEvent>() {
 //                @Override
@@ -69,12 +68,15 @@ public class Main extends Application {
 
         rootLayout.setCenter(categoryMenuView);
     }
-
+    static void loadData(){
+        List<Resume> resumeList = ParseResumeService.getResumeListByCategory(1);
+    }
     public Stage getPrimaryStage() {
         return primaryStage;
     }
 
     public static void main(String[] args) {
+        loadData();
         launch(args);
     }
 }

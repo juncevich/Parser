@@ -10,27 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParseCategoryDao implements CategoryDao {
-    @Override
-    public Category create() {
-        return null;
-    }
-
-    @Override
-    public Category read(int key) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public void update(Category category) {
-
-    }
-
-    @Override
-    public void delete(Category category) {
-
-    }
-
+public class ParseCategoryService {
 
     public static List<Category> getAll() {
         List<Category> categories = new ArrayList<Category>();
@@ -44,7 +24,7 @@ public class ParseCategoryDao implements CategoryDao {
     }
 
     public Category getCategoryById(int id){
-        for (Category category: ParseCategoryDao.getAll()
+        for (Category category: ParseCategoryService.getAll()
              ) {
                 if (category.getRubricNumber() == id){
                     return category;
