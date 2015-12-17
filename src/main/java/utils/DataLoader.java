@@ -20,10 +20,12 @@ public class DataLoader {
     private static PreparedStatement pstmt;
     private static ResultSet rs;
     private String categoryId;
-
+    private Boolean isEmpty;
+    /*to do Реализовать проверку таблицы на предмет наличия записей в ней */
     public void getData() throws SQLException {
+        isEmpty = false;
+
         con = DriverManager.getConnection(url, user, password);
-        //pstmt = con.prepareStatement();
         List<Category> categoryList = ParseCategoryService.getAll();
         for (Category category: categoryList
              ) {
