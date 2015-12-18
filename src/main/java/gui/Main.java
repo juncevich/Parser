@@ -1,15 +1,14 @@
 package gui;
 
 import entity.Category;
-import entity.Resume;
 import javafx.application.Application;
+import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import parse.ParseCategoryService;
-import parse.ParseResumeService;
 import utils.DataLoader;
 import utils.Parser;
 
@@ -31,8 +30,26 @@ public class Main extends Application {
         this.primaryStage.setTitle("Resume parser.");
         initRootLayout();
         showCategoryView();
+        final Task task;
+        task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                loadData();
+                int max = 50;
+                for (int i = 1; i <= max; i++) {
+                    if (isCancelled()) {
+                        break;
+                    }
+                    updateProgress(i, max);
+                    updateMessage(String.valueOf(i));
 
-    }
+                    Thread.sleep(100);
+                }
+                return null;
+            }
+        };
+        new Thread(task).start();
+        }
 
 
     public void initRootLayout() {
@@ -73,6 +90,7 @@ public class Main extends Application {
 
     static void loadData() throws SQLException {
         DataLoader dataLoader = new DataLoader();
+        dataLoader.removeAllData();
         dataLoader.getData();
     }
     public Stage getPrimaryStage() {
@@ -81,8 +99,11 @@ public class Main extends Application {
 
     public static void main(String[] args) throws SQLException {
 
+        //List<Category> categoryList = ParseCategoryService.getAll();
+        //DataLoader dataLoader = new DataLoader();
+        //dataLoader.start();
         launch(args);
-        loadData();
+
 
     }
 }

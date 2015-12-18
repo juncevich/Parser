@@ -19,7 +19,7 @@ public class Parser {
     static Elements resumeList;
     static JSONObject jsonObject;
     static JSONArray jsonArray;
-    static int limit = 50;
+    static int limit = 25;
     public Parser() {
         getMenuList();
 
@@ -106,6 +106,7 @@ public class Parser {
         return null;
     }
     public static Elements getCategoryList() {
+        //getMenuList();
         return categoryList;
     }
 

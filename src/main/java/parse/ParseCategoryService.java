@@ -20,7 +20,7 @@ public class ParseCategoryService {
         return categories;
     }
 
-    public Category getCategoryById(int id){
+    public static Category getCategoryById(int id){
         for (Category category: ParseCategoryService.getAll()
              ) {
                 if (category.getRubricNumber() == id){

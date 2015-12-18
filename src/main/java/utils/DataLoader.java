@@ -10,7 +10,16 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataLoader {
+public class DataLoader extends Thread{
+    public DataLoader() {
+        try {
+            removeAllData();
+            getData();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     private static final String url = "jdbc:mysql://localhost:3306/resume_schema?rewriteBatchedStatements=true";
     private static final String user = "root";
@@ -75,6 +84,14 @@ public class DataLoader {
 
 
 
+    }
+
+    public void removeAllData() throws SQLException {
+        con = DriverManager.getConnection(url, user, password);
+        Statement stmt = con.createStatement();
+        stmt.execute("TRUNCATE TABLE `resume_schema`.`Resume`;");
+        stmt.close();
+        con.close();
     }
 
 
