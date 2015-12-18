@@ -21,22 +21,32 @@ public class DataLoader {
     private static ResultSet rs;
     private String categoryId;
     private Boolean isEmpty;
-    /*to do Реализовать проверку таблицы на предмет наличия записей в ней */
+    /*TODO Реализовать проверку таблицы на предмет наличия записей в ней */
     public void getData() throws SQLException {
-        isEmpty = false;
 
         con = DriverManager.getConnection(url, user, password);
-        List<Category> categoryList = ParseCategoryService.getAll();
-        for (Category category: categoryList
-             ) {
-            int i = category.getRubricNumber();
-            this.categoryId = String.valueOf(i);
-            List<Resume> resumeList = Parser.getResumeList(i);
-            for (Resume resume: resumeList
-                 ) {
-                insertResume(resume);
+        Statement stmt = con.prepareStatement("SELECT COUNT(*) FROM resume;");
+        ResultSet resultSet = stmt.executeQuery("SELECT COUNT(*) FROM resume;");
+        if (resultSet.next()) {
+            if (resultSet.getInt(1) == 0) {
+                List<Category> categoryList = ParseCategoryService.getAll();
+                for (Category category : categoryList
+                        ) {
+                    int i = category.getRubricNumber();
+                    this.categoryId = String.valueOf(i);
+                    List<Resume> resumeList = Parser.getResumeList(i);
+                    for (Resume resume : resumeList
+                            ) {
+                        insertResume(resume);
+                    }
+                }
+                System.out.println("Загрузка данных прошла успешно...");
+            } else {
+                System.out.println("Данные уже загружены ...");
             }
         }
+
+
 
     }
 
