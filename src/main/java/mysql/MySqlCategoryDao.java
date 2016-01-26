@@ -71,7 +71,7 @@ public class MySqlCategoryDao implements CategoryDao {
         String sql = "SELECT * FROM resume_schema.Category;";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         ResultSet resultSet = preparedStatement.executeQuery();
-        List<Category> categoryList = new ArrayList<Category>();
+        List<Category> categoryList = new ArrayList<>();
         while (resultSet.next()){
             Category category = new Category();
             category.setId(resultSet.getInt("id"));
