@@ -33,11 +33,11 @@ public class ParseResumeDao implements ResumeDao{
 
     @Override
     public List<Resume> getAll() {
-        List<Resume> resumes = new ArrayList<Resume>();
+        List<Resume> resumes = new ArrayList<>();
         for (int i = 0; i < Parser.getResumeList(1).length(); i++){
             Resume resume = new Resume();
-            resume.setId(Parser.getResumeList("50").getJSONObject(i).optString("id"));
-            resume.setSkills(Parser.getResumeList("50").getJSONObject(i).optString("skills"));
+            resume.setId(Parser.getResumeList(50).getJSONObject(i).optString("id"));
+            resume.setSkills(Parser.getResumeList(50).getJSONObject(i).optString("skills"));
             resumes.add(resume);
         }
         return resumes;

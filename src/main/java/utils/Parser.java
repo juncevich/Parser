@@ -14,7 +14,7 @@ import java.io.IOException;
 public class Parser {
     private static Document document;
     private static Elements categoryList;
-    static Elements resumeList;
+    private static Elements resumeList;
     private final String URL = "http://ekb.zarplata.ru/";
 
     public Parser() {
@@ -44,17 +44,16 @@ public class Parser {
 
     }
 
-    public static void getResumeList(int category){
-        getDocument(getResumeJsonByCategory(category));
+    public static JSONArray getResumeList(int category){
+        return getDocument(getResumeJsonByCategory(category));
     }
 
 
-    public static JSONArray getDocument(Document document) throws JSONException {
+    private static JSONArray getDocument(Document document) throws JSONException {
             String resumeListJson = document.select("body").text();
             JSONObject jsonObject = new JSONObject(resumeListJson);
-            JSONArray jsonArray = jsonObject.getJSONArray("resumes");
 
-            //System.out.println(resumeListJson);
+        //System.out.println(resumeListJson);
 
 
 //            for (int i = 0; i < jsonArray.length(); i++) {
@@ -91,7 +90,7 @@ public class Parser {
 //
 //                System.out.println(resume_working_type);
 //                System.out.println("------------------------------------------------------------------------");
-                return jsonArray;
+                return jsonObject.getJSONArray("resumes");
 
 
 
@@ -102,7 +101,7 @@ public class Parser {
 
     }
 
-    public static Document getResumeJsonByCategory(int categoryId){
+    private static Document getResumeJsonByCategory(int categoryId){
         try {
             document = Jsoup.connect("http://ekb.zarplata.ru/api/v1/resumes/?state%5B%5D=1" +
                     "&visibility_type=1&average_salary=true&categories_facets=1&city_id%5B%5D=994" +
