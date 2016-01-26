@@ -35,16 +35,6 @@ public class Main extends Application {
             @Override
             protected Void call() throws Exception {
                 loadData();
-                int max = 50;
-                for (int i = 1; i <= max; i++) {
-                    if (isCancelled()) {
-                        break;
-                    }
-                    updateProgress(i, max);
-                    updateMessage(String.valueOf(i));
-
-                    Thread.sleep(100);
-                }
                 return null;
             }
         };
@@ -67,8 +57,8 @@ public class Main extends Application {
 
     public void showCategoryView(){
         CategoryMenuView categoryMenuView = new CategoryMenuView();
-        ParseCategoryService parseCategoryService = new ParseCategoryService();
-        List<Category> categoryList = ParseCategoryService.getAll();
+        //ParseCategoryService parseCategoryService = new ParseCategoryService();
+        //List<Category> categoryList = ParseCategoryService.getAll();
 
 
         //            button1.setOnAction(new EventHandler<ActionEvent>() {
@@ -97,13 +87,13 @@ public class Main extends Application {
         return primaryStage;
     }
 
-    public static void main(String[] args) throws SQLException {
+ //   public static void main(String[] args) throws SQLException {
+//
+//        //List<Category> categoryList = ParseCategoryService.getAll();
+//        //DataLoader dataLoader = new DataLoader();
+//        //dataLoader.start();
+//        launch(args);
 
-        //List<Category> categoryList = ParseCategoryService.getAll();
-        //DataLoader dataLoader = new DataLoader();
-        //dataLoader.start();
-        launch(args);
 
-
-    }
+//    }
 }
