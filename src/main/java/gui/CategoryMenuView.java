@@ -2,11 +2,17 @@ package gui;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 import parse.ParseCategoryService;
+
+import java.io.IOException;
 
 
 class CategoryMenuView extends GridPane {
@@ -30,6 +36,17 @@ class CategoryMenuView extends GridPane {
             categoryButton.setTextAlignment(TextAlignment.JUSTIFY);
             categoryButton.setOnAction(actionEvent -> {
                 System.out.println(categoryButton.getButton_id()+" "+ categoryButton.getName());
+//                Parent root1 = null;
+//                try {
+//                    root1 = FXMLLoader.load(getClass().getResource("ResumeListView.fxml"));
+//                    Stage stage = new Stage();
+//                    Scene scene = new Scene(root1);
+//                    stage.setTitle(categoryButton.getName());
+//                    stage.setScene(scene);
+//                    stage.show();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
 
 //                    rootLayout.setCenter(new ResumeList());
 //                    primaryStage.setTitle(buttonCategory.getText());
