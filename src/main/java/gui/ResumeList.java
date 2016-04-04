@@ -13,7 +13,7 @@ public class ResumeList extends AnchorPane {
      */
     public ResumeList() {
         try {
-            getChildren().add(FXMLLoader.<Node>load(ClassLoader.getSystemResource("ResumeListView.fxml")));
+            getChildren().add(FXMLLoader.load(ClassLoader.getSystemResource("ResumeListView.fxml")));
 
         } catch (IOException e) {
             e.printStackTrace();

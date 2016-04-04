@@ -4,13 +4,34 @@ public class Resume{
     String id;
     String owner_id;
     String wanted_salary;
+    String wanted_salary_rub;
     String age;
+    String header;
     String personal_qualities;
     String institution;
     String education_specialty;
     String education_description;
     String experience;
+    String url;
     String skills;
+    String working_type;
+
+    public Resume(String id, String owner_id, String wanted_salary, String wanted_salary_rub, String age, String header, String personal_qualities, String institution, String education_specialty, String education_description, String experience, String url, String skills, String working_type) {
+        this.id = id;
+        this.owner_id = owner_id;
+        this.wanted_salary = wanted_salary;
+        this.wanted_salary_rub = wanted_salary_rub;
+        this.age = age;
+        this.header = header;
+        this.personal_qualities = personal_qualities;
+        this.institution = institution;
+        this.education_specialty = education_specialty;
+        this.education_description = education_description;
+        this.experience = experience;
+        this.url = url;
+        this.skills = skills;
+        this.working_type = working_type;
+    }
 
     public String getId() {
         return id;
@@ -36,12 +57,28 @@ public class Resume{
         this.wanted_salary = wanted_salary;
     }
 
+    public String getWanted_salary_rub() {
+        return wanted_salary_rub;
+    }
+
+    public void setWanted_salary_rub(String wanted_salary_rub) {
+        this.wanted_salary_rub = wanted_salary_rub;
+    }
+
     public String getAge() {
         return age;
     }
 
     public void setAge(String age) {
         this.age = age;
+    }
+
+    public String getHeader() {
+        return header;
+    }
+
+    public void setHeader(String header) {
+        this.header = header;
     }
 
     public String getPersonal_qualities() {
@@ -84,11 +121,27 @@ public class Resume{
         this.experience = experience;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     public String getSkills() {
         return skills;
     }
 
     public void setSkills(String skills) {
         this.skills = skills;
+    }
+
+    public String getWorking_type() {
+        return working_type;
+    }
+
+    public void setWorking_type(String working_type) {
+        this.working_type = working_type;
     }
 }

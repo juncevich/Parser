@@ -19,7 +19,7 @@ import java.util.List;
 
 public class Main extends Application {
     private Stage primaryStage;
-    private BorderPane rootLayout;
+    private AnchorPane rootLayout;
     private AnchorPane CategoryLayout;
     private ResumeList resumeList;
     Parser parser = new Parser();
@@ -75,7 +75,7 @@ public class Main extends Application {
 
 
 
-        rootLayout.setCenter(categoryMenuView);
+        rootLayout.getChildren().add(categoryMenuView);
     }
 
     static void loadData() throws SQLException {

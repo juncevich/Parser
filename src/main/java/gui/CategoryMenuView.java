@@ -11,7 +11,7 @@ import parse.ParseCategoryService;
 
 class CategoryMenuView extends GridPane {
     public CategoryMenuView() {
-        setAlignment(Pos.CENTER);
+        setAlignment(Pos.BOTTOM_CENTER);
         setHgap(10);
         setVgap(10);
         setPadding(new Insets(5,25,5,25));
@@ -30,6 +30,7 @@ class CategoryMenuView extends GridPane {
             categoryButton.setTextAlignment(TextAlignment.JUSTIFY);
             categoryButton.setOnAction(actionEvent -> {
                 System.out.println(categoryButton.getButton_id()+" "+ categoryButton.getName());
+
 //                    rootLayout.setCenter(new ResumeList());
 //                    primaryStage.setTitle(buttonCategory.getText());
 

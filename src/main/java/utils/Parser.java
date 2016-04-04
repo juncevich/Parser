@@ -1,5 +1,6 @@
 package utils;
 
+import entity.Resume;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,6 +10,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Parser {
@@ -44,8 +47,34 @@ public class Parser {
 
     }
 
-    public static JSONArray getResumeList(int category){
-        return getDocument(getResumeJsonByCategory(category));
+    public static List<Resume> getResumeList(int category){
+        JSONArray jsonArray = getDocument(getResumeJsonByCategory(category));
+        List<Resume> resumeList = new ArrayList<>();
+        for (int i = 0; i < jsonArray.length(); i++) {
+
+                String resume_id = jsonArray.getJSONObject(i).optString("id");
+                String resume_owner_id = jsonArray.getJSONObject(i).optString("owner_id");
+                String resume_wanted_salary = jsonArray.getJSONObject(i).optString("wanted_salary");
+                String resume_wanted_salary_rub = jsonArray.getJSONObject(i).optString("wanted_salary_rub");
+                String resume_age = jsonArray.getJSONObject(i).optString("age");
+                String resume_header = jsonArray.getJSONObject(i).optString("header");
+                String resume_personal_qualities = jsonArray.getJSONObject(i).optString("personal_qualities");
+                String resume_institution = jsonArray.getJSONObject(i).optString("institution");
+                String resume_education_specialty = jsonArray.getJSONObject(i).optString("education_specialty");
+                String resume_education_description = jsonArray.getJSONObject(i).optString("education_description");
+                String resume_experience = jsonArray.getJSONObject(i).optString("experience");
+                String resume_url = jsonArray.getJSONObject(i).optString("url");
+                String resume_skills = jsonArray.getJSONObject(i).optString("skills");
+
+                String resume_working_type = jsonArray.getJSONObject(i).optString("working_type");
+            Resume resume = new Resume(resume_id, resume_owner_id, resume_wanted_salary, resume_wanted_salary_rub,
+                    resume_age, resume_header, resume_personal_qualities, resume_institution,
+                    resume_education_specialty, resume_education_description, resume_experience, resume_url,
+                    resume_skills, resume_working_type);
+            resumeList.add(resume);
+
+    }
+        return resumeList;
     }
 
 
